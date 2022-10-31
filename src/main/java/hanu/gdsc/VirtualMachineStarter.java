@@ -24,6 +24,8 @@ public class VirtualMachineStarter {
         run("wget https://github.com/judge0/judge0/releases/download/v1.13.0/judge0-v1.13.0.zip");
         run("unzip judge0-v1.13.0.zip");
         move("judge0-v1.13.0/docker-compose.yml", "docker-compose.yml");
+        run("docker stop $(docker ps -a -q)");
+        run("docker rm $(docker ps -a -q)");
         run("docker-compose up", false);
         logger.info("Virtual machine started successfully.");
     }
